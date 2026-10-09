@@ -1,36 +1,22 @@
-# MNIST Neural Network from Scratch
+# MNIST From Scratch
 
-A lightweight Multilayer Perceptron (MLP) built from scratch using only **Python**, **NumPy**, and **Matplotlib**. The goal of this project is to build a basic understanding of deep learning fundamentals without relying on high-level frameworks like TensorFlow or PyTorch.
+An educational neural network implementation built from scratch in Python using NumPy.
 
----
+## Objective
 
-## Target Goal
-Achieve **>= 95% classification accuracy** on the standard MNIST handwritten digits dataset using pure linear algebra and matrix operations.
+Build a neural network that classifies handwritten digits from the MNIST dataset while understanding the mathematics behind its learning process.
 
----
+## Implementation
 
-## Built With
+* [ ] Load and preprocess MNIST
+* [ ] Implement activation functions
+* [ ] Implement forward propagation
+* [ ] Implement the loss function
+* [ ] Implement backpropagation manually
+* [ ] Implement gradient descent
+* [ ] Train and evaluate the network
+* [ ] Visualize predictions and errors
 
-* **Python 3** – Core programming language
-* **NumPy** – Vectorized math operations, matrix multiplication, and weight updates
-* **Matplotlib** – Data visualization and training loss/accuracy plotting
+## Learning notes
 
----
-
-## Architecture & Implementation Details
-
-* **Model Type:** Multilayer Perceptron (MLP)
-* **Activation Function:** ReLU (Rectified Linear Unit) for hidden layers
-* **Output Layer:** Softmax for multi-class probability distribution
-* **Optimization:** Custom backpropagation algorithm with gradient descent
-
----
-
-## Getting Started
-
-### Prerequisites
-
-Make sure you have Python installed, along with the required dependencies:
-
-```bash
-pip install numpy matplotlib
+Document the mathematical ideas, implementation decisions, and lessons learned throughout the project.
