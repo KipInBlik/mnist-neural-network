@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+from loss import softmax_and_grad
 from src.data import load_mnist
 from src.network import NeuralNetwork
 
@@ -13,19 +14,27 @@ def main():
 
     # Start with a small batch of five images.
     X_batch = X_train[:5]
+    y_batch = y_train[:5]
 
     # Run forward propagation.
-    scores, cache = network.forward(X = X_batch)
+    logits, cache = network.forward(X = X_batch)
 
-    # Select the class with the highest score.
-    predictions = np.argmax(scores, axis = 1)
+    # Calculate probabilities, loss and output gradients.
+    loss, probabilities, dlogits = softmax_and_grad(
+        logits, y_batch
+    )
 
-    print("Input shape:", X_batch.shape)
-    print("Hidden activations shape:", cache["A1"].shape)
-    print("Output scores shape:", scores.shape)
+    predictions = np.argmax(probabilities, axis=1)
 
+    print("Logits shape:", logits.shape)
+    print("Probabilities shape:", probabilities.shape)
+    print("Gradient shape:", dlogits.shape)
+
+    print("Probability sums:", probabilities.sum(axis=1))
+    print("Initial loss:", loss)
+
+    print("Correct labels:", y_batch)
     print("Predictions:", predictions)
-    print("Correct labels:", y_train[:5])
 
 if __name__ == "__main__":
     main()

@@ -10,3 +10,4 @@ experiments/results/
 *.pkl
 *.pth
 .env
+mnist_sample.png
