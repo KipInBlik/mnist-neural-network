@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+from backprop import backwards_output
 from loss import softmax_and_grad
 from src.data import load_mnist
 from src.network import NeuralNetwork
@@ -24,17 +25,23 @@ def main():
         logits, y_batch
     )
 
-    predictions = np.argmax(probabilities, axis=1)
+    # Backpropagation through the output layer.
+    dW2, dA1, db2 = backwards_output(
+        cache, dlogits, network.W2
+    )
 
-    print("Logits shape:", logits.shape)
-    print("Probabilities shape:", probabilities.shape)
-    print("Gradient shape:", dlogits.shape)
+    print("Loss:", loss)
+    print("dlogits shape:", dlogits.shape)
+    print("dW2 shape:", dW2.shape)
+    print("db2 shape:", db2.shape)
+    print("dA1 shape:", dA1.shape)
 
-    print("Probability sums:", probabilities.sum(axis=1))
-    print("Initial loss:", loss)
+    # Verify that the gradient shapes match their targets.
+    assert dW2.shape == network.W2.shape
+    assert db2.shape == network.b2.shape
+    assert dA1.shape == cache["A1"].shape
 
-    print("Correct labels:", y_batch)
-    print("Predictions:", predictions)
-
+    print("All gradient shape checks passed!")
+    
 if __name__ == "__main__":
     main()

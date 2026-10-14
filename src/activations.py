@@ -6,6 +6,11 @@ def relu(z):
         neural network."""
     return np.maximum(0, z)
 
+def relu_derivative(z):
+    """Calculate the derivative of Rectified Linear Unit element-wise."""
+    return (z > 0).astype(z.dtype)
+
+# Other activation functions.
 def sigmoid(z):
     """Apply Sigmoid element-wise.
         This is an alternative to the ReLU activation function for additional
