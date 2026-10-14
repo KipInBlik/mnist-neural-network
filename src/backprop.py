@@ -1,7 +1,7 @@
 import numpy as np
 from src.activations import relu_derivative
 
-def backwards_output(cache, dlogits, W2):
+def backward_output(cache, dlogits, W2):
     """
     Calculate gradients for the output layer.
 
