@@ -7,6 +7,7 @@ from src.data import load_mnist
 from src.network import NeuralNetwork
 from src.training import train_epoch
 from src.evaluate import accuracy
+from src.model_io import save_model
 
 def main():
     # Load the dataset.
@@ -33,8 +34,10 @@ def main():
         print(f"Epoch {epoch}/{epochs} - Loss: {loss:.4f}")
 
     test_accuracy = accuracy(network, X_test, y_test)
-
     print(f"Test accuracy: {test_accuracy:.2%}")
+
+    save_model(network)
+    print("Model saved successfully!")
 
 if __name__ == "__main__":
     main()
