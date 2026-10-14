@@ -1,3 +1,5 @@
+import numpy as np
+
 from src.backprop import backward_output, backward_hidden
 from src.loss import softmax_and_grad
 
@@ -24,5 +26,30 @@ def train_step(network, X_batch, y_batch, learning_rate=0.01):
 
     return loss
 
+def train_epoch(network, X_train, y_train, batch_size=64, learning_rate=0.01):
+    # Shuffle the training examples.
+    indices = np.random.permutation(len(X_train))
+
+    total_loss = 0.0
+
+    # Process the dataset one batch at a time.
+    for start in range(0, len(X_train), batch_size):
+        batch_indices = indices[start:start + batch_size]
+
+        X_batch = X_train[batch_indices]
+        y_batch = y_train[batch_indices]
+
+        # Update the network using this batch.
+        loss = train_step(
+            network,
+            X_batch,
+            y_batch,
+            learning_rate=learning_rate
+        )
+
+        # Weigh the loss by the number of examples in this batch.
+        total_loss += loss * len(X_batch)
+
+    return total_loss / len(X_train)
 
 
